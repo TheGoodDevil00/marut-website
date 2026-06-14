@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect, useReducer, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Button from '@/components/ui/Button'
@@ -20,6 +20,33 @@ export default function Nav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
+  const navRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (mobileMenuOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (mobileMenuOpen && event.key === 'Escape') {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    if (mobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [mobileMenuOpen])
 
   const navItems = [
     { href: isHome ? '#' : '/', id: 'home', label: 'HOME', isDropdown: false },
@@ -96,7 +123,7 @@ export default function Nav() {
   }, [isHome])
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors border-b ${
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-colors border-b ${
       scrolled ? 'bg-dark/80 backdrop-blur-sm border-dark-border' : 'bg-dark/80 backdrop-blur-sm border-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -181,8 +208,9 @@ export default function Nav() {
         <>
           {/* Backdrop to collapse when clicking empty space below menu */}
           <div 
-            className="fixed inset-0 top-16 bg-black/60 md:hidden z-40"
+            className="fixed inset-0 top-16 h-screen w-screen bg-black/60 md:hidden z-40 cursor-pointer"
             onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
           />
           <div className="relative z-50 bg-dark-surface border-b border-dark-border px-6 py-4 flex flex-col gap-4 md:hidden">
             {navItems.map((item) => {
