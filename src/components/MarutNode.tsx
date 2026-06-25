@@ -8,11 +8,11 @@ const CATEGORY_STYLES: Record<
   MarutNodeData['category'],
   { bg: string; border: string; text: string; dot: string }
 > = {
-  root:    { bg: '#2D3748', border: '#4A5568', text: '#F7FAFC', dot: '#68D391' },
-  branch:  { bg: '#2C4A3E', border: '#2D9E75', text: '#C6F6D5', dot: '#68D391' },
+  root: { bg: '#2D3748', border: '#4A5568', text: '#F7FAFC', dot: '#68D391' },
+  branch: { bg: '#2C4A3E', border: '#2D9E75', text: '#C6F6D5', dot: '#68D391' },
   section: { bg: '#1A365D', border: '#2B6CB0', text: '#BEE3F8', dot: '#63B3ED' },
-  task:    { bg: '#44337A', border: '#6B46C1', text: '#E9D8FD', dot: '#B794F4' },
-  leaf:    { bg: '#1A3A2A', border: '#276749', text: '#9AE6B4', dot: '#68D391' },
+  task: { bg: '#44337A', border: '#6B46C1', text: '#E9D8FD', dot: '#B794F4' },
+  leaf: { bg: '#1A3A2A', border: '#276749', text: '#9AE6B4', dot: '#68D391' },
 };
 
 interface MarutNodeProps extends NodeProps<Node<MarutNodeData>> {
@@ -184,11 +184,11 @@ function MarutNode({ id, data, selected }: MarutNodeProps) {
           >
             {data.collapsedLeft ? (
               <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             ) : (
               <svg width="8" height="2" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             )}
           </button>
@@ -200,11 +200,11 @@ function MarutNode({ id, data, selected }: MarutNodeProps) {
           >
             {data.collapsedRight ? (
               <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             ) : (
               <svg width="8" height="2" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             )}
           </button>
@@ -220,11 +220,11 @@ function MarutNode({ id, data, selected }: MarutNodeProps) {
         >
           {data.collapsed ? (
             <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M4 1V7M1 4H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           ) : (
             <svg width="8" height="2" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M1 1H7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           )}
         </button>
